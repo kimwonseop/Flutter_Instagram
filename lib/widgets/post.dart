@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:testing_flutter/constants/common_size.dart';
+import 'package:testing_flutter/constants/screen_size.dart';
 import 'package:testing_flutter/widgets/my_progress_indicator.dart';
 import 'package:testing_flutter/widgets/rounded_avatar.dart';
 
@@ -8,7 +9,6 @@ import 'comment.dart';
 
 class Post extends StatelessWidget {
   final int index;
-  Size size = Size.zero;
 
   Post(
     this.index, {
@@ -17,10 +17,6 @@ class Post extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (size == Size.zero) {
-      size = MediaQuery.of(context).size;
-    }
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -45,7 +41,7 @@ class Post extends StatelessWidget {
         showImage: false,
         username: 'testingUser',
         text: 'I have money',
-        ),
+      ),
     );
   }
 
@@ -101,7 +97,7 @@ class Post extends StatelessWidget {
       imageUrl: 'https://picsum.photos/id/$index/200/200',
       placeholder: (BuildContext context, String url) {
         return MyProgressIndicator(
-          containerSize: size.width,
+          containerSize: size!.width,
         );
       },
       imageBuilder: (BuildContext context, ImageProvider imageProvider) {
@@ -117,4 +113,3 @@ class Post extends StatelessWidget {
     );
   }
 }
-
